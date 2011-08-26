@@ -1,13 +1,11 @@
 var StringCalculator = function() {
-	var BASE_DECIMAL = 10,
-		sumaLosNumerosDeLaCadena = function( cadenaConNumeros ) {  	   
-		if (cadenaConNumeros === "") {
-			return 0;
+		sumaLosNumerosDeLaCadena = function( cadenaConNumerosSeparadosPorComas ) {  	   
+			var coleccionDeCadenasConNumeros, coleccionDeNumeros;
+			coleccionDeCadenasConNumeros = cadenaConNumerosSeparadosPorComas.split(",");
+			coleccionDeNumeros = coleccionDeCadenasConNumeros.map(function(valor) {return valor - 0} );
+			return coleccionDeNumeros.reduce(function(valorPrevio, valorActual) {return valorPrevio + valorActual});
 		}
-		else {
-			return parseInt(cadenaConNumeros, BASE_DECIMAL);
-		}
-	}	   
+
 	return {
 		add : sumaLosNumerosDeLaCadena
 	}     
