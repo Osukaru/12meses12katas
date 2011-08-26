@@ -70,4 +70,12 @@ describe("StringCalculator", function() {
 			expect(StringCalculator.add("1, 2\n2\n2, 3, 4\n5, 1, 3")).toEqual(23);
 		});
 	});
-});
+
+	describe("Se permite especificar un separador diferente iniciando la cadena con //[separador]\n)", function() {
+			it("--> se cumple si especificamos como separador ;", function() {
+				expect(StringCalculator.add("//;\n1;2;3\n4;5;6\n7;8;9")).toEqual(45);
+			});
+			
+	});
+	
+});	
