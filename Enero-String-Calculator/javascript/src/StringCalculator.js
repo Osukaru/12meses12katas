@@ -3,9 +3,9 @@ var StringCalculator = function() {
 			var separador = ",", arrayDeNumeros;
 			if (tieneMarcaDeSeparador(cadena)) {
 				separador = obtieneSeparador(cadena);
-				cadena = quitarMarcaDeSeparador(cadena);
+				cadena = quitaMarcaDeSeparador(cadena);
 			}
-			arrayDeNumeros = convertirCadenaEnArrayDeNumeros(cadena, separador);
+			arrayDeNumeros = convierteCadenaEnArrayDeNumeros(cadena, separador);
 			return sumaArrayDeNumeros(arrayDeNumeros);
 		}
 		
@@ -17,30 +17,31 @@ var StringCalculator = function() {
 			return cadena.substring(2,3);
 		}
 		
-		quitarMarcaDeSeparador = function(cadena) {
+		quitaMarcaDeSeparador = function(cadena) {
 			return cadena.substr(4);
 		}
 
-		convertirCadenaEnArrayDeNumeros = function(cadena, separador) {
+		convierteCadenaEnArrayDeNumeros = function(cadena, separador) {
 			var arrayDeCadenas, arrayDeNumeros;
-			cadena = reemplazarSaltosDeLineaPorSeparadores(cadena, separador);;
+			cadena = reemplazaSaltosDeLineaPorSeparadores(cadena, separador);;
 			arrayDeCadenas = cadena.split(separador);
-			arrayDeNumeros = arrayDeCadenas.map(convertirCadenaEnNumero);
+			arrayDeNumeros = arrayDeCadenas.map(convierteCadenaEnNumero);
+			compruebaNumerosNegativos(arrayDeNumeros);
 			return arrayDeNumeros;
 		}
 
-		convertirCadenaEnNumero = function(cadena) {
-			var numero = cadena - 0;
+		convierteCadenaEnNumero = function(cadena) {
+			return cadena - 0;
+		}
 
-			if (numero < 0 ) {
-				 throw(new Error("negatives not allowed: " + numero));
-			}
-			else {
-				return numero;
+		compruebaNumerosNegativos = function(arrayDeNumeros) {
+			var arrayDeNumerosNegativos = arrayDeNumeros.filter(function(element) {return (element < 0)});
+			if (arrayDeNumerosNegativos.length > 0) {
+				throw(new Error("negatives not allowed: " + arrayDeNumerosNegativos.join(", ")));
 			}
 		}
 
-		reemplazarSaltosDeLineaPorSeparadores = function(cadena, separador) {
+		reemplazaSaltosDeLineaPorSeparadores = function(cadena, separador) {
 			return cadena.replace(/\n/g, separador);
 		}
 
