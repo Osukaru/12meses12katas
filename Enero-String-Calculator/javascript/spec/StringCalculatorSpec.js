@@ -100,4 +100,11 @@ describe("StringCalculator", function() {
 			expect(StringCalculator.add("2, 1001")).toEqual(2);
 		});	
 	});
+
+	describe("Los separadores pueden tener cualquier longitud", function() {
+		it("--> se cumple si especificamos como separador ***", function() {
+			expect(StringCalculator.add("//[***]\n1***2***3")).toEqual(6);
+		});	
+	});
+	
 });	

@@ -14,11 +14,11 @@ var StringCalculator = function() {
 		}
 
 		obtieneSeparador = function(cadena) {
-			return cadena.substring(2,3);
+			return cadena.substring(2, cadena.indexOf("\n")).replace(/\[|\]/g, "");
 		}
 		
 		quitaMarcaDeSeparador = function(cadena) {
-			return cadena.substr(4);
+			return cadena.substr(cadena.indexOf("\n"));
 		}
 
 		convierteCadenaEnArrayDeNumeros = function(cadena, separador) {
