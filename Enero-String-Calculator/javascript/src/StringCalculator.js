@@ -25,8 +25,19 @@ var StringCalculator = function() {
 			var arrayDeCadenas, arrayDeNumeros;
 			cadena = reemplazarSaltosDeLineaPorSeparadores(cadena, separador);;
 			arrayDeCadenas = cadena.split(separador);
-			arrayDeNumeros = arrayDeCadenas.map(function(valor) {return valor - 0});
+			arrayDeNumeros = arrayDeCadenas.map(convertirCadenaEnNumero);
 			return arrayDeNumeros;
+		}
+
+		convertirCadenaEnNumero = function(cadena) {
+			var numero = cadena - 0;
+
+			if (numero < 0 ) {
+				 throw(new Error("negatives not allowed: " + numero));
+			}
+			else {
+				return numero;
+			}
 		}
 
 		reemplazarSaltosDeLineaPorSeparadores = function(cadena, separador) {

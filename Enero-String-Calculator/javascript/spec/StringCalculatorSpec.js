@@ -81,5 +81,12 @@ describe("StringCalculator", function() {
 			});
 
 	});
+
+	describe("No se permiten numeros negativos", function() {
+		it("--> al encontrar un numero negativo se produce una excepcion 'negatives not allowed: (numero)'", function() {	
+			expect(function() {StringCalculator.add("//;\n1;2;-3\n4;5;6\n7;8;9");}).toThrow(new Error("negatives not allowed: -3"));
+		});
+		
+	});
 	
 });	
