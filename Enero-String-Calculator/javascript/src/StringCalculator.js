@@ -1,19 +1,43 @@
 var StringCalculator = function() {
-		sumaLosNumerosDeLaCadena = function( cadenaConLineasDeNumerosSeparadosPorComas ) {  	   
-			var c=cadenaConLineasDeNumerosSeparadosPorComas,cadenaConNumerosSeparadosPorComas, coleccionDeCadenasConNumeros, coleccionDeNumeros, separador = ",";
-			if (c.substring(0,2)==="//") {
-				separador = c.substring(2,3);
-				dummy=c.slice(4);
-				console.log(separador);
-				console.log(c);
+		sumaFilasDeNumeros = function(cadena) {  	   
+			var separador = ",", arrayDeNumeros;
+			if (tieneMarcaDeSeparador(cadena)) {
+				separador = obtieneSeparador(cadena);
+				cadena = quitarMarcaDeSeparador(cadena);
 			}
-			cadenaConNumerosSeparadosPorComas = cadenaConLineasDeNumerosSeparadosPorComas.replace(/\n/g, separador);
-			coleccionDeCadenasConNumeros = cadenaConNumerosSeparadosPorComas.split(separador);
-			coleccionDeNumeros = coleccionDeCadenasConNumeros.map(function(valor) {return valor - 0} );
-			return coleccionDeNumeros.reduce(function(valorPrevio, valorActual) {return valorPrevio + valorActual});
+			arrayDeNumeros = convertirCadenaEnArrayDeNumeros(cadena, separador);
+			return sumaArrayDeNumeros(arrayDeNumeros);
+		}
+		
+		tieneMarcaDeSeparador = function(cadena) {
+			return cadena.substring(0,2) === "//" ? true : false;
+		}
+
+		obtieneSeparador = function(cadena) {
+			return cadena.substring(2,3);
+		}
+		
+		quitarMarcaDeSeparador = function(cadena) {
+			return cadena.substr(4);
+		}
+
+		convertirCadenaEnArrayDeNumeros = function(cadena, separador) {
+			var arrayDeCadenas, arrayDeNumeros;
+			cadena = reemplazarSaltosDeLineaPorSeparadores(cadena, separador);;
+			arrayDeCadenas = cadena.split(separador);
+			arrayDeNumeros = arrayDeCadenas.map(function(valor) {return valor - 0});
+			return arrayDeNumeros;
+		}
+
+		reemplazarSaltosDeLineaPorSeparadores = function(cadena, separador) {
+			return cadena.replace(/\n/g, separador);
+		}
+
+		sumaArrayDeNumeros = function (arrayDeNumeros) {
+			return arrayDeNumeros.reduce(function(valorPrevio, valorActual) {return valorPrevio + valorActual});
 		}
 
 	return {
-		add : sumaLosNumerosDeLaCadena
+		add : sumaFilasDeNumeros
 	}     
 }();

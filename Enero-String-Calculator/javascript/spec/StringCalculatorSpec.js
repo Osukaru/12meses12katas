@@ -75,7 +75,11 @@ describe("StringCalculator", function() {
 			it("--> se cumple si especificamos como separador ;", function() {
 				expect(StringCalculator.add("//;\n1;2;3\n4;5;6\n7;8;9")).toEqual(45);
 			});
-			
+
+			it("--> se cumple si especificamos como separador un salto de linea", function() {
+				expect(StringCalculator.add("//\n\n1\n2\n3\n4\n5\n6\n7\n8\n9")).toEqual(45);
+			});
+
 	});
 	
 });	
