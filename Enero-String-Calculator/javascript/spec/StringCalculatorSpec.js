@@ -54,8 +54,8 @@ describe("StringCalculator", function() {
 			expect(StringCalculator.add("27, 89, 54, 23")).toEqual(193);
 		});
 
-		it("--> se cumple con los valores 123456789, 987654321", function() {
-			expect(StringCalculator.add("123456789, 987654321")).toEqual(1111111110);
+		it("--> se cumple con los valores 123, 987", function() {
+			expect(StringCalculator.add("123, 987")).toEqual(1110);
 		});
 	});
 
@@ -94,5 +94,10 @@ describe("StringCalculator", function() {
 			expect(function() {StringCalculator.add("1, -2, -3");}).toThrow(new Error("negatives not allowed: -2, -3"));
 		});
 	});
-	
+
+	describe("Los numeros mayores que mil se ignoran", function() {
+		it("--> se cumple con los valores 2 y 1001", function() {
+			expect(StringCalculator.add("2, 1001")).toEqual(2);
+		});	
+	});
 });	

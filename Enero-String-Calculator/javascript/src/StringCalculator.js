@@ -31,7 +31,8 @@ var StringCalculator = function() {
 		}
 
 		convierteCadenaEnNumero = function(cadena) {
-			return cadena - 0;
+			var numero = cadena - 0;
+			return numero > 1000 ? 0 : numero;;
 		}
 
 		compruebaNumerosNegativos = function(arrayDeNumeros) {
