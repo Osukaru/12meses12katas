@@ -107,4 +107,18 @@ describe("StringCalculator", function() {
 		});	
 	});
 	
+	describe("Se pueden especificar varios separadores", function() {
+		it("--> se cumple si especificamos como separadores * y %", function() {
+			expect(StringCalculator.add("//[*][%]\n1*2%3")).toEqual(6);
+		});	
+		
+		it("--> se cumple si especificamos como separadores ** y %%%", function() {
+			expect(StringCalculator.add("//[**][%%%]\n1**2%%%3")).toEqual(6);
+		});	
+		
+		it("--> se cumple si especificamos como separadores *+ y %/", function() {
+			expect(StringCalculator.add("//[*+][%/]\n1*+2%/3")).toEqual(6);
+		});	
+	});
+	
 });	
