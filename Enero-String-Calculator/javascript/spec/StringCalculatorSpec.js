@@ -120,5 +120,4 @@ describe("StringCalculator", function() {
 			expect(StringCalculator.add("//[*+][%/]\n1*+2%/3")).toEqual(6);
 		});	
 	});
-	
 });	
